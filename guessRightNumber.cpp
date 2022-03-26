@@ -4,27 +4,37 @@
 // This is a "random number guesser"
 
 
-
 #include <iostream>
+#include <random>
+
+
 
 int main() {
     // this function is a random number guesser
-    const int guess_number = 8;
-    int random_number;
+    int guessNumber;
+    int randomNumber;
+
+
+    std::random_device rseed;
+    std::mt19937 rgen(rseed());  // mersenne_twister
+    std::uniform_int_distribution<int> idist(0, 9);  // [0,9]
+    randomNumber = idist(rgen);
 
 
     // input
-    std::cout << " What is your random number: ";
-    std::cin >> random_number;
+    std::cout << "Enter your random number (0-9): ";
+    std::cin >> guessNumber;
     std::cout << "" << std::endl;
     // process
-    if (guess_number != random_number) {
+    if (guessNumber != randomNumber) {
     // output
         std::cout << "Guess is incorrect";
     }
     // process
-    if (guess_number == random_number) {
+    if (guessNumber == randomNumber) {
     // output
         std::cout << "Guess is correct";
     }
+    std::cout << "" << std::endl;
+    std::cout << "\nDone." << std::endl;
 }
